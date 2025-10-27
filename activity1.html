@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 1 | Community Survey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+    <style>
+         :root {
+            /* Kept your original color palette */
+            --c-pink: #ff9ff3;
+            --c-yellow: #feca57;
+            --c-green: #1dd1a1;
+            --c-blue: #54a0ff;
+            --c-gradient: linear-gradient(90deg, var(--c-pink), var(--c-yellow), var(--c-green), var(--c-blue));
+            /* Simplified variables */
+            --c-text: #333;
+            --c-bg: #f4f7f6;
+            --c-card-bg: #ffffff;
+            --card-radius: 16px;
+            --simple-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--c-bg);
+            /* Simplified background */
+            min-height: 100vh;
+            color: var(--c-text);
+        }
+        
+        .header {
+            text-align: center;
+            padding: 48px 20px 20px 20px;
+        }
+        
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            /* Simplified font */
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--c-text);
+            margin-bottom: 16px;
+        }
+        
+        .header p {
+            font-size: 1.08rem;
+            background: rgba(0, 0, 0, 0.05);
+            /* Simplified description bg */
+            padding: 8px 30px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+        
+        .timeline {
+            max-width: 900px;
+            margin: 34px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            /* Slightly reduced gap */
+        }
+        
+        .day-entry {
+            background: var(--c-card-bg);
+            /* Solid white background */
+            box-shadow: var(--simple-shadow);
+            /* Simple shadow */
+            border-radius: var(--card-radius);
+            border-left: 10px solid #fff;
+            /* Default border, will be overridden */
+            padding: 30px 36px;
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+            animation: fadeInUp 0.5s forwards;
+        }
+        
+        .day-entry:hover {
+            transform: translateY(-5px);
+            /* Simplified hover */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        /* --- This is where the "colorful" part comes in --- */
+        
+        .timeline .day-entry:nth-child(1) {
+            border-left-color: var(--c-pink);
+        }
+        
+        .timeline .day-entry:nth-child(1) h3 i {
+            background: var(--c-pink);
+        }
+        
+        .timeline .day-entry:nth-child(2) {
+            border-left-color: var(--c-yellow);
+        }
+        
+        .timeline .day-entry:nth-child(2) h3 i {
+            background: var(--c-yellow);
+        }
+        
+        .timeline .day-entry:nth-child(3) {
+            border-left-color: var(--c-blue);
+        }
+        
+        .timeline .day-entry:nth-child(3) h3 i {
+            background: var(--c-blue);
+        }
+        
+        .timeline .day-entry:nth-child(4) {
+            border-left-color: var(--c-green);
+        }
+        
+        .timeline .day-entry:nth-child(4) h3 i {
+            background: var(--c-green);
+        }
+        /* --- End of colorful section --- */
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .content h3 {
+            font-family: 'Poppins', sans-serif;
+            /* Simplified font */
+            font-weight: 600;
+            font-size: 1.2rem;
+            /* Made title slightly larger */
+            color: var(--c-text);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        
+        .content h3 i {
+            font-size: 1.1rem;
+            /* Adjusted icon size */
+            color: #fff;
+            /* background is now set by nth-child rules */
+            border-radius: 50%;
+            padding: 8px;
+            /* Adjusted padding */
+            /* Added fixed size for consistency */
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .content p,
+        .content ul {
+            font-size: 1.02rem;
+            line-height: 1.7;
+        }
+        
+        .content ul {
+            margin-top: 12px;
+            padding-left: 24px;
+        }
+        
+        .content li {
+            margin-bottom: 6px;
+        }
+        
+        .image-gallery {
+            display: flex;
+            gap: 22px;
+            margin-top: 21px;
+            flex-wrap: wrap;
+        }
+        
+        .photo {
+            border: 1px solid #eee;
+            /* Added a light border */
+            border-radius: 14px;
+            box-shadow: 0 3px 10px rgb(0 0 0 / 7%);
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 4/3;
+            transition: box-shadow 0.2s, transform 0.2s;
+            width: 230px;
+        }
+        
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(1.02);
+            /* Slightly toned down filter */
+            transition: transform 0.33s;
+        }
+        
+        .photo:hover img {
+            transform: scale(1.07);
+            /* Removed rotate */
+        }
+        /* Modal (No changes, it's functional and simple) */
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 999;
+            background: rgba(22, 22, 24, 0.92);
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+            animation: modalFade .27s;
+        }
+        
+        @keyframes modalFade {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .modal-content {
+            max-width: 95vw;
+            max-height: 95vh;
+            background: #212;
+            border-radius: 22px;
+            padding: 7px;
+            box-shadow: 0 8px 32px rgb(0 0 0 / 38%);
+        }
+        
+        .modal-content img {
+            max-width: 100%;
+            max-height: 78vh;
+            object-fit: contain;
+            border-radius: 16px;
+            margin: auto;
+            display: block;
+        }
+        
+        .close {
+            position: absolute;
+            top: 26px;
+            right: 44px;
+            font-size: 2.2rem;
+            color: #eee;
+            cursor: pointer;
+            z-index: 10;
+        }
+        /* Progress bar (Kept the gradient as a nice colorful accent) */
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 5px;
+            z-index: 888;
+            background: var(--c-gradient);
+            transition: width 0.2s;
+        }
+        
+        @media (max-width: 900px) {
+            .timeline {
+                padding: 0 5vw;
+            }
+            .day-entry {
+                padding: 24px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .content h3 {
+                font-size: 1.1rem;
+            }
+            .content p,
+            .content ul {
+                font-size: 0.95rem;
+            }
+            .photo {
+                width: 100%;
+                /* Changed to 100% width on mobile */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="progress-bar" id="progress"></div>
+    <header class="header">
+        <h1>Week 1 Report</h1>
+        <p>Survey on Health & Hygiene Awareness &nbsp;|&nbsp; 15-05-2025 to 18-05-2025</p>
+    </header>
+    <div class="timeline">
+        <div class="day-entry">
+            <div class="content">
+                <h3><i class="fa-solid fa-user-check"></i>Day 1: Seeking Permission</h3>
+                <p>Visited the Sachivalayam to obtain official permission for the “Community Service Project”. Permission was successfully granted by the MRO.</p>
+                <div class="image-gallery">
+                    <div class="photo" onclick="openModal('11.jpeg')">
+                        <img src="11.jpeg" alt="Permission document">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="day-entry">
+            <div class="content">
+                <h3><i class="fa-solid fa-clipboard-question"></i>Day 2: Survey & Questions</h3>
+                <p>Continued the survey, focusing on community awareness regarding:</p>
+                <ul>
+                    <li>Common diseases and their prevention.</li>
+                    <li>Government health schemes and support systems.</li>
+                    <li>Daily personal hygiene and wellness habits.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="day-entry">
+            <div class="content">
+                <h3><i class="fa-solid fa-chart-simple"></i>Day 3: Analyzing Findings</h3>
+                <p>The survey highlighted that most people were unaware of government health programs and neglected daily exercise and cleanliness habits.</p>
+            </div>
+        </div>
+        <div class="day-entry">
+            <div class="content">
+                <h3><i class="fa-solid fa-lightbulb"></i>Day 4: Awareness Program</h3>
+                <p>Organized a community awareness program where we discussed and demonstrated:</p>
+                <ul>
+                    <li>Local environmental health conditions.</li>
+                    <li>Healthy lifestyle and hygiene tips.</li>
+                    <li>Simple daily routines for better well-being.</li>
+                </ul>
+                <div class="image-gallery">
+                    <div class="photo" onclick="openModal('week.1.jpeg')">
+                        <img src="week.1.jpeg" alt="Awareness Program">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modal-img" src="" alt="Expanded View">
+        </div>
+    </div>
+
+    <script>
+        function openModal(imageSrc) {
+            const modal = document.getElementById('modal');
+            document.getElementById('modal-img').src = imageSrc;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // Progress bar scroll
+        window.addEventListener('scroll', function() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById('progress').style.width = scrolled + "%";
+        });
+    </script>
+</body>
+
+</html>

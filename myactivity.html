@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Awesome Weekly Report</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* CSS Variables for new colorful theme */
+        
+         :root {
+            --bg-color: #f4f7f6;
+            /* Soft, light background */
+            --header-bg: #4a90e2;
+            /* Vibrant blue header */
+            --card-bg: #ffffff;
+            /* Clean white cards */
+            --text-color: #333333;
+            /* Dark, readable text */
+            --header-text: #ffffff;
+            /* White text for header */
+            --primary-color: #4a90e2;
+            /* Primary blue for accents */
+            --card-shadow: rgba(0, 0, 0, 0.08);
+            /* Softer shadow */
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* --- NEW Colorful, Solid Header --- */
+        
+        .header-title {
+            /* Solid background, no more glass effect */
+            background-color: var(--header-bg);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 50px;
+            /* A softer shadow for the light theme */
+            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .header-title h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: var(--header-text);
+            /* White text on blue bg */
+            letter-spacing: 3px;
+            margin: 0;
+            /* Removed text-shadow, not needed for this theme */
+        }
+        /* --- Grid Layout for the Cards --- */
+        
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            /* Space between cards */
+            padding: 0;
+            list-style-type: none;
+        }
+        /* --- The Awesome & Cool Buttons (Now Cards!) --- */
+        
+        .report-card {
+            background: var(--card-bg);
+            /* Solid white background */
+            border-radius: 15px;
+            padding: 30px;
+            text-decoration: none;
+            color: var(--text-color);
+            position: relative;
+            overflow: hidden;
+            /* Removed border, using shadow for separation */
+            /* Removed backdrop-filter (no more glossy) */
+            box-shadow: 0 4px 12px var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+        
+        .report-card:hover {
+            transform: translateY(-10px);
+            /* Stronger, colored shadow on hover */
+            box-shadow: 0 10px 25px rgba(74, 144, 226, 0.25);
+        }
+        
+        .report-card:active {
+            transform: translateY(-2px) scale(0.98);
+        }
+        /* --- Meaningful Content & ICONS Inside the Cards --- */
+        
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+            /* Icon color is set individually below */
+        }
+        /* --- NEW: Individual Colors for Each Icon --- */
+        
+        .report-grid li:nth-child(1) .card-icon {
+            color: #e74c3c;
+        }
+        /* Red */
+        
+        .report-grid li:nth-child(2) .card-icon {
+            color: #3498db;
+        }
+        /* Blue */
+        
+        .report-grid li:nth-child(3) .card-icon {
+            color: #2ecc71;
+        }
+        /* Green */
+        
+        .report-grid li:nth-child(4) .card-icon {
+            color: #f39c12;
+        }
+        /* Orange */
+        
+        .report-grid li:nth-child(5) .card-icon {
+            color: #9b59b6;
+        }
+        /* Purple */
+        
+        .report-grid li:nth-child(6) .card-icon {
+            color: #1abc9c;
+        }
+        /* Teal */
+        
+        .report-card:hover .card-icon {
+            transform: scale(1.1);
+            /* Animate icon on hover */
+        }
+        
+        .card-content h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+            /* A darker, stronger text for titles */
+        }
+        
+        .card-content p {
+            /* Removed min-height and line-height, not needed */
+            font-size: 1rem;
+            margin: 0;
+            color: var(--text-color);
+        }
+        /* --- New "View Report" Arrow - NOW VISIBLE --- */
+        
+        .card-arrow {
+            font-size: 1rem;
+            font-weight: 600;
+            /* Bolder */
+            color: var(--primary-color);
+            /* Blue color */
+            margin-top: 20px;
+            opacity: 1;
+            /* VISIBLE by default */
+            transition: color 0.3s ease;
+        }
+        
+        .report-card:hover .card-arrow {
+            opacity: 1;
+            /* Stays visible */
+            color: #e74c3c;
+            /* Changes to red on hover */
+        }
+        /* --- Footer --- */
+        
+        footer {
+            text-align: center;
+            font-size: 0.9rem;
+            padding: 50px 1rem 1rem 1rem;
+            color: #888;
+        }
+        /* --- Simple Animation for Page Load --- */
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header-title">
+        <h1>WEEKLY ACTIVITY REPORT</h1>
+    </header>
+
+    <main>
+        <ul class="report-grid">
+            <li>
+                <a href="activity1.html" target="_blank" class="report-card">
+                    <div class="card-content">
+                        <i class="fa-solid fa-lightbulb card-icon"></i>
+                        <h3>Week 1</h3>
+                        <p class="card-arrow">View Report &rarr;</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="activity2.html" target="_blank" class="report-card">
+                    <div class="card-content">
+                        <i class="fa-solid fa-drafting-compass card-icon"></i>
+                        <h3>Week 2</h3>
+                        <p class="card-arrow">View Report &rarr;</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="activity3.html" target="_blank" class="report-card">
+                    <div class="card-content">
+                        <i class="fa-solid fa-code card-icon"></i>
+                        <h3>Week 3</h3>
+                        <p class="card-arrow">View Report &rarr;</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="activity4.html" target="_blank" class="report-card">
+                    <div class="card-content">
+                        <i class="fa-solid fa-bug-slash card-icon"></i>
+                        <h3>Week 4</h3>
+                        <p class="card-arrow">View Report &rarr;</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="activity5.html" target="_blank" class="report-card">
+                    <div class="card-content">
+                        <i class="fa-solid fa-users card-icon"></i>
+                        <h3>Week 5</h3>
+                        <p class="card-arrow">View Report &rarr;</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="activity6.html" target="_blank" class="report-card">
+                    <div class="card-content">
+                        <i class="fa-solid fa-rocket card-icon"></i>
+                        <h3>Week 6</h3>
+                        <p class="card-arrow">View Report &rarr;</p>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 MY ACTIVITY</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Swachh Bharat Abhiyan</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+         :root {
+            /* Define the color palette */
+            --c-pink: #ff9ff3;
+            --c-yellow: #feca57;
+            --c-green: #1dd1a1;
+            --c-blue: #54a0ff;
+            --c-gradient: linear-gradient(90deg, var(--c-pink), var(--c-yellow), var(--c-green), var(--c-blue));
+            /* Simple, light theme variables */
+            --c-text: #333;
+            --c-text-light: #555;
+            --c-bg: #f4f7f6;
+            --c-card-bg: #ffffff;
+            --c-image-bg: #f8f9fa;
+            /* Soft bg for image container */
+            --card-radius: 16px;
+            --simple-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--c-bg);
+            color: var(--c-text);
+            line-height: 1.7;
+        }
+        /* --- Header --- */
+        
+        .header {
+            text-align: center;
+            padding: 48px 20px 20px 20px;
+        }
+        
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--c-text);
+            margin-bottom: 16px;
+        }
+        
+        .header p {
+            font-size: 1.08rem;
+            color: var(--c-text-light);
+            background: rgba(0, 0, 0, 0.05);
+            padding: 8px 30px;
+            border-radius: 12px;
+            display: inline-block;
+            font-weight: 600;
+        }
+        /* --- Progress Bar --- */
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 5px;
+            z-index: 888;
+            background: var(--c-gradient);
+            transition: width 0.2s;
+        }
+        /* --- Main Content Container --- */
+        
+        .container {
+            max-width: 900px;
+            margin: 34px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding: 0 20px;
+        }
+        /* --- Card Styling --- */
+        
+        .card {
+            background: var(--c-card-bg);
+            box-shadow: var(--simple-shadow);
+            border-radius: var(--card-radius);
+            /* Default border, will be overridden */
+            border-left: 10px solid #ccc;
+            overflow: hidden;
+            /* To contain the image radius */
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        /* --- Image container --- */
+        
+        .card-image-wrapper {
+            width: 100%;
+            height: 300px;
+            /* Fixed height for all image containers */
+            background-color: var(--c-image-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* This fits the whole image ("normal scale") */
+            border-radius: 8px;
+        }
+        /* --- End of image style --- */
+        
+        .content {
+            padding: 30px 36px;
+        }
+        
+        .content h3 {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--c-text);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        /* The colorful, round icon */
+        
+        .content h3 i {
+            font-size: 1.1rem;
+            color: #fff;
+            background: #ccc;
+            /* Default bg, will be overridden */
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            /* Prevent icon from shrinking */
+        }
+        
+        .content p {
+            font-size: 1.02rem;
+            color: var(--c-text-light);
+        }
+        
+        .content p:last-of-type {
+            margin-top: 15px;
+            /* Add space for the italic summary line */
+        }
+        
+        .content b {
+            font-weight: 600;
+            color: var(--c-text);
+            /* Bolder text */
+        }
+        
+        .content i {
+            color: var(--c-text-light);
+            font-weight: 600;
+        }
+        /* --- "More Colorful" nth-child styles --- */
+        
+        .container .card:nth-child(1) {
+            border-left-color: var(--c-green);
+        }
+        
+        .container .card:nth-child(1) .content h3 i {
+            background: var(--c-green);
+        }
+        
+        .container .card:nth-child(2) {
+            border-left-color: var(--c-blue);
+        }
+        
+        .container .card:nth-child(2) .content h3 i {
+            background: var(--c-blue);
+        }
+        
+        .container .card:nth-child(3) {
+            border-left-color: var(--c-yellow);
+        }
+        
+        .container .card:nth-child(3) .content h3 i {
+            background: var(--c-yellow);
+        }
+        
+        .container .card:nth-child(4) {
+            border-left-color: var(--c-pink);
+        }
+        
+        .container .card:nth-child(4) .content h3 i {
+            background: var(--c-pink);
+        }
+        /* --- End of colorful styles --- */
+        /* --- Footer --- */
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        /* --- Responsive --- */
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .header p {
+                font-size: 1rem;
+            }
+            .card-image-wrapper {
+                height: 220px;
+                /* Smaller image height on mobile */
+            }
+            .content {
+                padding: 24px;
+            }
+            .content h3 {
+                font-size: 1.1rem;
+            }
+            .content p,
+            .content ul {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="progress-bar" id="progress"></div>
+
+    <header class="header">
+        <h1>SWACHH BHARAT ABHIYAN</h1>
+        <p>Trash the trash, build the future.</p>
+    </header>
+
+    <div class="container">
+
+        <div class="card">
+            <div class="card-image-wrapper">
+                <img src="sb11.webp" alt="Swachh Bharat Abhiyan" class="card-image" />
+            </div>
+            <div class="content">
+                <h3><i class="fa-solid fa-flag"></i>Swachh Bharat Abhiyan</h3>
+                <p>
+                    <b>Launched in 2014,</b> Swachh Bharat Abhiyan is India’s nationwide movement for cleanliness and hygiene. <b>Inspired by Mahatma Gandhi's ideals,</b> it urges citizens to keep their surroundings clean and promotes sanitation in every
+                    community. With public participation and youth-driven initiatives, the mission aims to build a cleaner, <b>healthier India.</b>
+                </p>
+                <p>
+                    <i>India’s mission to create a cleaner, healthier nation.</i>
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image-wrapper">
+                <img src="sb2.webp" alt="Design posters" class="card-image" />
+            </div>
+            <div class="content">
+                <h3><i class="fa-solid fa-palette"></i>Design’s Role in Awareness</h3>
+                <p>
+                    Design plays a crucial role in raising awareness about health and hygiene. Through impactful visuals, infographics, and engaging campaigns, design communicates essential messages effectively. It simplifies complex information, making it accessible to
+                    all age groups. By using vibrant colors and clear typography, design captures attention and encourages positive behavior changes. Whether it's posters, social media graphics, or educational materials, design is a powerful tool in promoting
+                    health and hygiene practices.
+                </p>
+                <p>
+                    <i>Visuals amplify awareness through clarity and impact.</i>
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image-wrapper">
+                <img src="sb33.avif" alt="Code on a screen" class="card-image" />
+            </div>
+            <div class="content">
+                <h3><i class="fa-solid fa-code"></i>Digital Awareness Through Code</h3>
+                <p>
+                    In today’s digital world, coding can become a tool for awareness. Web designs, animated elements, and accessible tutorials—especially speechless ones—help spread awareness in inclusive ways. Platforms like YouTube and websites can host creative and informative
+                    content for a global audience.
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image-wrapper">
+                <img src="sb4.avif" alt="Community group" class="card-image" />
+            </div>
+            <div class="content">
+                <h3><i class="fa-solid fa-users"></i>Community Engagement</h3>
+                <p>
+                    Community engagement is vital for the success of health and hygiene initiatives. Local events, workshops, and clean-up drives foster a sense of ownership and responsibility among citizens. By involving schools, NGOs, and local governments, communities
+                    can work together to create lasting change. Engaging with the community not only raises awareness but also builds a culture of cleanliness and hygiene that can be passed down through generations.
+                </p>
+                <p>
+                    <i>Together, we can build a cleaner, healthier future.</i>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 SWACHH BHARAT ABHIYAN</p>
+    </footer>
+
+    <script>
+        // Progress bar scroll
+        window.addEventListener('scroll', function() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById('progress').style.width = scrolled + "%";
+        });
+    </script>
+</body>
+
+</html>

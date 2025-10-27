@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tree Plantation</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+         :root {
+            /* Define the color palette */
+            --c-pink: #ff9ff3;
+            --c-yellow: #feca57;
+            --c-green: #1dd1a1;
+            --c-blue: #54a0ff;
+            --c-gradient: linear-gradient(90deg, var(--c-pink), var(--c-yellow), var(--c-green), var(--c-blue));
+            /* Simple, light theme variables */
+            --c-text: #333;
+            --c-text-light: #555;
+            --c-bg: #f4f7f6;
+            --c-card-bg: #ffffff;
+            --c-image-bg: #f8f9fa;
+            /* Soft bg for image container */
+            --card-radius: 16px;
+            --simple-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--c-bg);
+            color: var(--c-text);
+            line-height: 1.7;
+        }
+        /* --- Header --- */
+        
+        .header {
+            text-align: center;
+            padding: 48px 20px 20px 20px;
+        }
+        
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--c-text);
+            margin-bottom: 16px;
+        }
+        
+        .header p {
+            font-size: 1.08rem;
+            color: var(--c-text-light);
+            background: rgba(0, 0, 0, 0.05);
+            padding: 8px 30px;
+            border-radius: 12px;
+            display: inline-block;
+            font-weight: 600;
+        }
+        /* --- Progress Bar --- */
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 5px;
+            z-index: 888;
+            background: var(--c-gradient);
+            transition: width 0.2s;
+        }
+        /* --- Main Content Container --- */
+        
+        .container {
+            max-width: 900px;
+            margin: 34px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding: 0 20px;
+        }
+        /* --- Card Styling --- */
+        
+        .card {
+            background: var(--c-card-bg);
+            box-shadow: var(--simple-shadow);
+            border-radius: var(--card-radius);
+            /* Default border, will be overridden */
+            border-left: 10px solid #ccc;
+            overflow: hidden;
+            /* To contain the image radius */
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        /* --- Image container --- */
+        
+        .card-image-wrapper {
+            width: 100%;
+            height: 300px;
+            /* Fixed height for all image containers */
+            background-color: var(--c-image-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* This fits the whole image ("normal scale") */
+            border-radius: 8px;
+        }
+        /* --- End of image style --- */
+        
+        .content {
+            padding: 30px 36px;
+        }
+        
+        .content h3 {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--c-text);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        /* The colorful, round icon */
+        
+        .content h3 i {
+            font-size: 1.1rem;
+            color: #fff;
+            background: #ccc;
+            /* Default bg, will be overridden */
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            /* Prevent icon from shrinking */
+        }
+        
+        .content p {
+            font-size: 1.02rem;
+            color: var(--c-text-light);
+        }
+        
+        .content p:last-of-type {
+            margin-top: 15px;
+            /* Add space for the italic summary line */
+        }
+        
+        .content b {
+            font-weight: 600;
+            color: var(--c-text);
+            /* Bolder text */
+        }
+        
+        .content i {
+            color: var(--c-text-light);
+            font-weight: 600;
+        }
+        /* --- "More Colorful" nth-child styles --- */
+        /* We'll cycle through the 4 colors for the 6 cards */
+        
+        .container .card:nth-child(4n+1) {
+            border-left-color: var(--c-green);
+        }
+        
+        .container .card:nth-child(4n+1) .content h3 i {
+            background: var(--c-green);
+        }
+        
+        .container .card:nth-child(4n+2) {
+            border-left-color: var(--c-blue);
+        }
+        
+        .container .card:nth-child(4n+2) .content h3 i {
+            background: var(--c-blue);
+        }
+        
+        .container .card:nth-child(4n+3) {
+            border-left-color: var(--c-yellow);
+        }
+        
+        .container .card:nth-child(4n+3) .content h3 i {
+            background: var(--c-yellow);
+        }
+        
+        .container .card:nth-child(4n+4) {
+            border-left-color: var(--c-pink);
+        }
+        
+        .container .card:nth-child(4n+4) .content h3 i {
+            background: var(--c-pink);
+        }
+        /* --- End of colorful styles --- */
+        /* --- Footer --- */
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        /* --- Responsive --- */
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .header p {
+                font-size: 1rem;
+            }
+            .card-image-wrapper {
+                height: 220px;
+                /* Smaller image height on mobile */
+            }
+            .content {
+                padding: 24px;
+            }
+            .content h3 {
+                font-size: 1.1rem;
+            }
+            .content p,
+            .content ul {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="progress-bar" id="progress"></div>
+
+    <header class="header">
+        <h1>TREE PLANTATION</h1>
+        <p>Nature’s Wi-Fi: reconnect by planting trees.</p>
+    </header>
+
+    <div class="container">
+
+        <div class="card">
+            <div class="card-image-wrapper">
+                <img src="tree 1.avif" alt="Lush green forest" class="card-image" />
+            </div>
+            <div class="content">
+                <h3><i class="fa-solid fa-leaf"></i>1. Benefits of Tree Plantation</h3>
+                <p>
+                    Tree plantation is essential for a sustainable future. Trees improve air quality, combat climate change, and provide habitats for wildlife. They also enhance the beauty of our surroundings and contribute to mental well-being. By planting trees, we can
+                    reduce soil erosion, conserve water, and create a healthier environment for ourselves and future generations. Every tree planted is a step towards a greener planet.
+                </p>
+                <p>
+                    <i>Planting trees today ensures a healthier tomorrow.</i>
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image-wrapper">
+                <img src="tree2.avif" alt="Different types of saplings" class="card-image" />
+            </div>
+            <div class="content">
+                <h3><i class="fa-solid fa-tree"></i>2. Choosing the Right Tree Species</h3>
+                <p>
+                    Selecting the right tree species is crucial for successful plantation. Native species are often the best choice as they are adapted to local conditions and support local wildlife. Consider factors like soil type, climate, and space available for growth.
+                    By choosing the right species, we can ensure that our efforts contribute positively to the ecosystem and provide long-term benefits.
+                </p>
+                <p>
+                    <i>Right species, right impact.</i>
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image-wrapper">
+                <img src="plantation.avif" alt="Hands planting a small tree" class="card-image" />
+            </div>
+            <div class="content">
+                <h3><i class="fa-solid fa-screwdriver-wrench"></i>3. Step-by-Step Tree Planting Techniques</h3>
+                <p>
+                    Planting a tree involves several steps: selecting a suitable location, digging a proper hole, preparing the soil, and planting the sapling at the right depth. Watering and mulching are also essential for the tree's growth. Following these techniques ensures
+                    that the tree establishes itself well and thrives in its new environment. Proper care during the initial stages is crucial for long-term success.
+                </p>
+                <p>
+                    <i>Plant with care, watch it grow.</i>
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image-wrapper">
+                <img src="tree12.avif" alt="Factory smoke vs green trees" class="card-image" />
+            </div>
+            <div class="content">
+                <h3><i class="fa-solid fa-smog"></i>4. Tree Plantation and Climate Change</h3>
+                <p>
+                    Tree plantation plays a significant role in mitigating climate change. Trees absorb carbon dioxide, one of the main greenhouse gases, and release oxygen. By increasing the number of trees, we can help reduce the overall carbon footprint and combat global
+                    warming. Additionally, trees provide shade, which can lower energy consumption in urban areas. Every tree planted is a step towards a more sustainable future.
+                </p>
+                <p>
+                    <i>Trees: Nature’s climate warriors.</i>
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image-wrapper">
+                <img src="urban.avif" alt="Trees growing in a city" class="card-image" />
+            </div>
+            <div class="content">
+                <h3><i class="fa-solid fa-city"></i>5. Urban Tree Planting Challenges</h3>
+                <p>
+                    Urban areas face unique challenges when it comes to tree plantation. Limited space, pollution, and soil quality can hinder the growth of trees. However, with careful planning and community involvement, these challenges can be overcome. Vertical gardens,
+                    rooftop plantations, and community parks are innovative solutions that can enhance urban greenery. By addressing these challenges, we can create healthier and more livable cities.
+                </p>
+                <p>
+                    <i>Urban trees: small spaces, big impact.</i>
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image-wrapper">
+                <img src="biodiversity.jpg" alt="Various animals in a forest" class="card-image" />
+            </div>
+            <div class="content">
+                <h3><i class="fa-solid fa-earth-americas"></i>6. Tree Plantation and Biodiversity</h3>
+                <p>
+                    Tree plantation is vital for preserving biodiversity. Trees provide habitats for various species, contributing to a balanced ecosystem. By planting diverse species, we can support wildlife and promote ecological health. Biodiversity is essential for maintaining
+                    the resilience of ecosystems, and tree plantation plays a key role in this process. Every tree planted contributes to a richer, more diverse environment.
+                </p>
+                <p>
+                    <i>Diverse trees, diverse life.</i>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 TREE PLANTATION BLOG</p>
+    </footer>
+
+    <script>
+        // Progress bar scroll
+        window.addEventListener('scroll', function() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById('progress').style.width = scrolled + "%";
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 4 | Swachh Bharat</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <style>
+         :root {
+            /* Palette from previous version */
+            --c-pink: #ff9ff3;
+            --c-yellow: #feca57;
+            --c-green: #1dd1a1;
+            --c-blue: #54a0ff;
+            --c-gradient: linear-gradient(90deg, var(--c-pink), var(--c-yellow), var(--c-green), var(--c-blue));
+            /* Simple, light theme variables */
+            --c-text: #333;
+            --c-bg: #f4f7f6;
+            --c-card-bg: #ffffff;
+            --card-radius: 16px;
+            --simple-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--c-bg);
+            /* Simplified light background */
+            min-height: 100vh;
+            color: var(--c-text);
+            padding: 20px;
+        }
+        /* --- Simplified Header --- */
+        
+        .header {
+            text-align: center;
+            padding: 48px 20px 20px 20px;
+            animation: fadeInDown 1s ease-out;
+            /* Kept animation */
+        }
+        
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            /* Simplified font */
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--c-text);
+            margin-bottom: 16px;
+            /* text-shadow removed */
+        }
+        
+        .header p {
+            font-size: 1.08rem;
+            color: #555;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 8px 30px;
+            border-radius: 12px;
+            display: inline-block;
+            animation: fadeInDown 1.2s ease-out;
+        }
+        /* --- Simple Stacked Timeline --- */
+        
+        .timeline {
+            max-width: 900px;
+            margin: 34px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            /* All complex ::after, left/right CSS removed */
+        }
+        
+        .day-entry {
+            background: var(--c-card-bg);
+            box-shadow: var(--simple-shadow);
+            border-radius: var(--card-radius);
+            border-left: 10px solid #fff;
+            /* Default border */
+            padding: 30px 36px;
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+            animation: fadeInUp 0.5s forwards;
+            /* Added simple animation */
+            width: 100%;
+            /* All positioning CSS removed */
+        }
+        
+        .day-entry:hover {
+            transform: translateY(-5px);
+            /* Simplified hover */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        /* --- Colorful entries --- */
+        /* Updated colors for this week */
+        
+        .timeline .day-entry:nth-child(1) {
+            border-left-color: var(--c-blue);
+        }
+        
+        .timeline .day-entry:nth-child(1) h3 i {
+            background: var(--c-blue);
+        }
+        
+        .timeline .day-entry:nth-child(2) {
+            border-left-color: var(--c-yellow);
+        }
+        
+        .timeline .day-entry:nth-child(2) h3 i {
+            background: var(--c-yellow);
+        }
+        
+        .timeline .day-entry:nth-child(3) {
+            border-left-color: var(--c-green);
+        }
+        
+        .timeline .day-entry:nth-child(3) h3 i {
+            background: var(--c-green);
+        }
+        /* --- Simple Content Card --- */
+        
+        .content {
+            /* All glassmorphism styles removed */
+            padding: 0;
+            /* Padding is now on .day-entry */
+        }
+        
+        .content h3 {
+            font-family: 'Poppins', sans-serif;
+            /* Simplified font */
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--c-text);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        /* Added icon styles from Week 1 */
+        
+        .content h3 i {
+            font-size: 1.1rem;
+            color: #fff;
+            border-radius: 50%;
+            padding: 8px;
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .content p,
+        .content ul {
+            font-size: 1.02rem;
+            line-height: 1.7;
+            color: #555;
+        }
+        /* --- Simple Image Gallery --- */
+        
+        .image-gallery {
+            display: flex;
+            /* Changed from grid to flex */
+            gap: 22px;
+            margin-top: 21px;
+            flex-wrap: wrap;
+        }
+        
+        .photo {
+            border: 1px solid #eee;
+            border-radius: 14px;
+            box-shadow: 0 3px 10px rgb(0 0 0 / 7%);
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 4/3;
+            transition: box-shadow 0.2s, transform 0.2s;
+            width: 230px;
+            /* Removed ::before overlay */
+        }
+        
+        .photo img {
+            width: 100%;
+            height: 100%;
+            /* Changed from 150px to fill container */
+            object-fit: cover;
+            transition: transform 0.33s;
+        }
+        
+        .photo:hover img {
+            transform: scale(1.07);
+            /* Simplified hover */
+        }
+        /* --- Modal Styles (Kept dark for focus) --- */
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            animation: modalFade .27s;
+        }
+        
+        .modal-content {
+            position: relative;
+            max-width: 80vw;
+            max-height: 90vh;
+            animation: zoomIn 0.4s ease;
+        }
+        
+        .modal-content img {
+            width: 100%;
+            max-height: 90vh;
+            /* Added to ensure image fits */
+            object-fit: contain;
+            /* Added to prevent distortion */
+            height: auto;
+            border-radius: 10px;
+        }
+        
+        .close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .close:hover {
+            transform: scale(1.2);
+        }
+        /* --- Progress Bar (Added from Week 1) --- */
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 5px;
+            z-index: 888;
+            background: var(--c-gradient);
+            transition: width 0.2s;
+        }
+        /* --- Animations --- */
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Added from Week 1 */
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        /* Added from Week 1 */
+        
+        @keyframes modalFade {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        /* --- Responsive Styles (Simplified) --- */
+        
+        @media (max-width: 900px) {
+            .timeline {
+                padding: 0 5vw;
+            }
+            .day-entry {
+                padding: 24px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .content h3 {
+                font-size: 1.1rem;
+            }
+            .content p,
+            .content ul {
+                font-size: 0.95rem;
+            }
+            .photo {
+                width: 100%;
+            }
+            .modal-content {
+                max-width: 90vw;
+            }
+            .close {
+                top: 10px;
+                right: 10px;
+                background: rgba(0, 0, 0, 0.5);
+                border-radius: 50%;
+                width: 35px;
+                height: 35px;
+                font-size: 1.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="progress-bar" id="progress"></div>
+
+    <header class="header">
+        <h1>Week 4 Report</h1>
+        <p>Swachh Bharat Abhiyan | 03-06-2025 to 08-06-2025</p>
+    </header>
+
+    <div class="timeline">
+
+        <div class="day-entry">
+            <div class="content">
+                <h3><i class="fa-solid fa-flag"></i>Mission & Health Gains</h3>
+                <p>At a workshop by WHO India, key findings were presented on the health gains from the Swachh Bharat (Clean India) Mission, highlighting the program's significant impact.</p>
+                <div class="image-gallery">
+                    <div class="photo" onclick="openModal('bharat.jpeg')">
+                        <img src="bharat.jpeg" alt="Swachh Bharat initiative">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="day-entry">
+            <div class="content">
+                <h3><i class="fa-solid fa-recycle"></i>A Paradigm Shift</h3>
+                <p>The mission marks a paradigm shift, going beyond just building toilets to include a holistic approach with behavior change, waste management, and public awareness creation.</p>
+                <div class="image-gallery">
+                    <div class="photo" onclick="openModal('swatch.jpeg')">
+                        <img src="swatch.jpeg" alt="Community cleaning drive">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="day-entry">
+            <div class="content">
+                <h3><i class="fa-solid fa-shield-heart"></i>Ensuring Public Well-being</h3>
+                <p>Proper sanitation is crucial for public health. The mission aims to prevent diseases, improve hygiene, and reduce healthcare burdens by creating a healthier environment for all citizens.</p>
+                <div class="image-gallery">
+                    <div class="photo" onclick="openModal('abhiyan.jpeg')">
+                        <img src="abhiyan.jpeg" alt="Promoting hygiene practices">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="modal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modal-img" src="" alt="Expanded View">
+        </div>
+    </div>
+
+    <script>
+        // --- Modal Functions ---
+        function openModal(imageSrc) {
+            document.getElementById('modal-img').src = imageSrc;
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // --- Progress bar scroll (Added from Week 1) ---
+        window.addEventListener('scroll', function() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById('progress').style.width = scrolled + "%";
+        });
+
+        // --- IntersectionObserver (Scroll Animation) REMOVED ---
+    </script>
+
+</body>
+
+</html>

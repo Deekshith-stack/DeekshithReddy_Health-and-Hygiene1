@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Health & Hygiene</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+         :root {
+            /* Define the color palette */
+            --c-pink: #ff9ff3;
+            --c-yellow: #feca57;
+            --c-green: #1dd1a1;
+            --c-blue: #54a0ff;
+            --c-gradient: linear-gradient(90deg, var(--c-pink), var(--c-yellow), var(--c-green), var(--c-blue));
+            /* Simple, light theme variables */
+            --c-text: #333;
+            --c-text-light: #555;
+            --c-bg: #f4f7f6;
+            --c-card-bg: #ffffff;
+            --c-image-bg: #f8f9fa;
+            /* Soft bg for image container */
+            --card-radius: 16px;
+            --simple-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--c-bg);
+            color: var(--c-text);
+            line-height: 1.7;
+        }
+        /* --- Header --- */
+        
+        .header {
+            text-align: center;
+            padding: 48px 20px 20px 20px;
+        }
+        
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--c-text);
+            margin-bottom: 16px;
+        }
+        
+        .header p {
+            font-size: 1.08rem;
+            color: var(--c-text-light);
+            background: rgba(0, 0, 0, 0.05);
+            padding: 8px 30px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+        /* --- Progress Bar --- */
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 5px;
+            z-index: 888;
+            background: var(--c-gradient);
+            transition: width 0.2s;
+        }
+        /* --- Main Content Container --- */
+        
+        .container {
+            max-width: 900px;
+            margin: 34px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding: 0 20px;
+        }
+        /* --- Card Styling --- */
+        
+        .card {
+            background: var(--c-card-bg);
+            box-shadow: var(--simple-shadow);
+            border-radius: var(--card-radius);
+            /* Default border, will be overridden */
+            border-left: 10px solid #ccc;
+            overflow: hidden;
+            /* To contain the image radius */
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        /* --- This is the key change for images --- */
+        
+        .card-image-wrapper {
+            width: 100%;
+            height: 300px;
+            /* Fixed height for all image containers */
+            background-color: var(--c-image-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* This fits the whole image ("normal scale") */
+        }
+        /* --- End of image change --- */
+        
+        .content {
+            padding: 30px 36px;
+        }
+        
+        .content h3 {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--c-text);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        /* The colorful, round icon */
+        
+        .content h3 i {
+            font-size: 1.1rem;
+            color: #fff;
+            background: #ccc;
+            /* Default bg, will be overridden */
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .content p,
+        .content ul {
+            font-size: 1.02rem;
+            color: var(--c-text-light);
+        }
+        
+        .content ul {
+            margin-top: 12px;
+            padding-left: 24px;
+        }
+        
+        .content li {
+            margin-bottom: 6px;
+        }
+        /* --- "More Colorful" nth-child styles --- */
+        
+        .container .card:nth-child(1) {
+            border-left-color: var(--c-green);
+        }
+        
+        .container .card:nth-child(1) .content h3 i {
+            background: var(--c-green);
+        }
+        
+        .container .card:nth-child(2) {
+            border-left-color: var(--c-blue);
+        }
+        
+        .container .card:nth-child(2) .content h3 i {
+            background: var(--c-blue);
+        }
+        
+        .container .card:nth-child(3) {
+            border-left-color: var(--c-yellow);
+        }
+        
+        .container .card:nth-child(3) .content h3 i {
+            background: var(--c-yellow);
+        }
+        
+        .container .card:nth-child(4) {
+            border-left-color: var(--c-pink);
+        }
+        
+        .container .card:nth-child(4) .content h3 i {
+            background: var(--c-pink);
+        }
+        /* --- End of colorful styles --- */
+        /* --- Footer --- */
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        footer a {
+            color: var(--c-blue);
+            /* Default link color */
+            text-decoration: none;
+            font-weight: 600;
+        }
+        /* --- Responsive --- */
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .card-image-wrapper {
+                height: 220px;
+                /* Smaller image height on mobile */
+            }
+            .content {
+                padding: 24px;
+            }
+            .content h3 {
+                font-size: 1.1rem;
+            }
+            .content p,
+            .content ul {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="progress-bar" id="progress"></div>
+
+    <header class="header">
+        <h1>Health and Hygiene</h1>
+        <p>Healthy Habits, Clean Living, a Better You</p>
+    </header>
+
+    <div class="container">
+
+        <div class="card">
+            <div class="card-image-wrapper">
+                <img src="health1.jpg" alt="Person washing hands" class="card-image" />
+            </div>
+            <div class="content">
+                <h3><i class="fa-solid fa-hands-sparkles"></i>1. What is hygiene?</h3>
+                <p>
+                    Hygiene refers to practices that help maintain health and prevent the spread of diseases—like washing hands, brushing teeth, and keeping surroundings clean.
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image-wrapper">
+                <img src="health2.png" alt="Healthy lifestyle collage" class="card-image" />
+            </div>
+            <div class="content">
+                <h3><i class="fa-solid fa-heart-pulse"></i>2. What is the difference?</h3>
+                <p>
+                    - <strong>Health</strong> is a state of complete physical, mental, and social well-being.<br> - <strong>Hygiene</strong> is the set of practices that help achieve and maintain that state.
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image-wrapper">
+                <img src="12.jpg" alt="Person feeling confident" class="card-image" />
+            </div>
+            <div class="content">
+                <h3><i class="fa-solid fa-user-shield"></i>3. Why is personal hygiene important?</h3>
+                <p>
+                    It prevents infections, boosts self-esteem, and promotes overall well-being.
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image-wrapper">
+                <img src="mask.jpg" alt="Person wearing a clean mask" class="card-image" />
+            </div>
+            <div class="content">
+                <h3><i class="fa-solid fa-list-check"></i>4. What are examples?</h3>
+                <ul>
+                    <li>Bathing regularly</li>
+                    <li>Washing hands frequently</li>
+                    <li>Brushing teeth twice a day</li>
+                    <li>Washing hands before meals</li>
+                    <li>Trimming nails</li>
+                    <li>Wearing clean clothes</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 HEALTH AND HYGIENE</p>
+    </footer>
+
+    <script>
+        // Color change function was removed
+
+        // Progress bar scroll
+        window.addEventListener('scroll', function() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById('progress').style.width = scrolled + "%";
+        });
+    </script>
+</body>
+
+</html>

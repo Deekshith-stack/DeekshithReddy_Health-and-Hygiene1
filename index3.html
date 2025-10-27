@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spreading Awareness</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+         :root {
+            /* Define the color palette */
+            --c-pink: #ff9ff3;
+            --c-yellow: #feca57;
+            --c-green: #1dd1a1;
+            --c-blue: #54a0ff;
+            --c-gradient: linear-gradient(90deg, var(--c-pink), var(--c-yellow), var(--c-green), var(--c-blue));
+            /* Simple, light theme variables */
+            --c-text: #333;
+            --c-text-light: #555;
+            --c-bg: #f4f7f6;
+            --c-card-bg: #ffffff;
+            --c-image-bg: #f8f9fa;
+            /* Soft bg for image container */
+            --card-radius: 16px;
+            --simple-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--c-bg);
+            color: var(--c-text);
+            line-height: 1.7;
+        }
+        /* --- Header --- */
+        
+        .header {
+            text-align: center;
+            padding: 48px 20px 20px 20px;
+        }
+        
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--c-text);
+            margin-bottom: 16px;
+        }
+        
+        .header p {
+            font-size: 1.08rem;
+            color: var(--c-text-light);
+            background: rgba(0, 0, 0, 0.05);
+            padding: 8px 30px;
+            border-radius: 12px;
+            display: inline-block;
+            font-weight: 600;
+        }
+        /* --- Progress Bar --- */
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 5px;
+            z-index: 888;
+            background: var(--c-gradient);
+            transition: width 0.2s;
+        }
+        /* --- Main Content Container --- */
+        
+        .container {
+            max-width: 900px;
+            margin: 34px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding: 0 20px;
+        }
+        /* --- Card Styling --- */
+        
+        .card {
+            background: var(--c-card-bg);
+            box-shadow: var(--simple-shadow);
+            border-radius: var(--card-radius);
+            /* Default border, will be overridden */
+            border-left: 10px solid #ccc;
+            overflow: hidden;
+            /* To contain the image radius */
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        /* --- Image container --- */
+        
+        .card-image-wrapper {
+            width: 100%;
+            height: 300px;
+            /* Fixed height for all image containers */
+            background-color: var(--c-image-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* This fits the whole image ("normal scale") */
+            border-radius: 8px;
+        }
+        /* --- End of image style --- */
+        
+        .content {
+            padding: 30px 36px;
+        }
+        
+        .content h3 {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--c-text);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        /* The colorful, round icon */
+        
+        .content h3 i {
+            font-size: 1.1rem;
+            color: #fff;
+            background: #ccc;
+            /* Default bg, will be overridden */
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            /* Prevent icon from shrinking */
+        }
+        
+        .content p,
+        .content ul {
+            font-size: 1.02rem;
+            color: var(--c-text-light);
+        }
+        
+        .content ul {
+            margin-top: 12px;
+            padding-left: 24px;
+        }
+        
+        .content li {
+            margin-bottom: 8px;
+        }
+        /* --- "More Colorful" nth-child styles --- */
+        
+        .container .card:nth-child(1) {
+            border-left-color: var(--c-green);
+        }
+        
+        .container .card:nth-child(1) .content h3 i {
+            background: var(--c-green);
+        }
+        
+        .container .card:nth-child(2) {
+            border-left-color: var(--c-blue);
+        }
+        
+        .container .card:nth-child(2) .content h3 i {
+            background: var(--c-blue);
+        }
+        
+        .container .card:nth-child(3) {
+            border-left-color: var(--c-yellow);
+        }
+        
+        .container .card:nth-child(3) .content h3 i {
+            background: var(--c-yellow);
+        }
+        
+        .container .card:nth-child(4) {
+            border-left-color: var(--c-pink);
+        }
+        
+        .container .card:nth-child(4) .content h3 i {
+            background: var(--c-pink);
+        }
+        /* --- End of colorful styles --- */
+        /* --- Footer --- */
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        /* --- Responsive --- */
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .header p {
+                font-size: 1rem;
+            }
+            .card-image-wrapper {
+                height: 220px;
+                /* Smaller image height on mobile */
+            }
+            .content {
+                padding: 24px;
+            }
+            .content h3 {
+                font-size: 1.1rem;
+            }
+            .content p,
+            .content ul {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="progress-bar" id="progress"></div>
+
+    <header class="header">
+        <h1>SPREADING AWARENESS</h1>
+        <p>Awareness is the first step to action.</p>
+    </header>
+
+    <div class="container">
+
+        <div class="card">
+            <div class="card-image-wrapper">
+                <img src="awareness1.jpg" alt="Spreading awareness" class="card-image" />
+            </div>
+            <div class="content">
+                <h3><i class="fa-solid fa-bullhorn"></i>1: What does "Spreading Awareness" mean?</h3>
+                <ul>
+                    <li>Spreading awareness means sharing knowledge and information about important issues to educate and inform others.</li>
+                    <li>It involves raising consciousness about topics that may not be widely known or understood.</li>
+                    <li>The goal is to inspire action, change perceptions, and promote understanding among individuals and communities.</li>
+                    <li>This can be done through various means such as social media, community events, educational programs, and public campaigns.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image-wrapper">
+                <img src="awareness2.jpg" alt="Man talking to a group" class="card-image" />
+            </div>
+            <div class="content">
+                <h3><i class="fa-solid fa-lightbulb"></i>2. Why is awareness important?</h3>
+                <p>
+                    Awareness is the first step toward solving any problem. It helps people recognize issues, make informed choices, and contribute to solutions — whether it’s for public health, sustainability, or digital safety.
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image-wrapper">
+                <img src="awareness3.jpg" alt="Social media on phone" class="card-image" />
+            </div>
+            <div class="content">
+                <h3><i class="fa-solid fa-share-nodes"></i>3. How can we effectively spread awareness?</h3>
+                <p>
+                    Through social media campaigns, informative videos, community events, posters, podcasts, and even speechless tutorials! The key is knowing your audience and delivering a clear, engaging message.
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image-wrapper">
+                <img src="awareness4.jpg" alt="Design tools and poster" class="card-image" />
+            </div>
+            <div class="content">
+                <h3><i class="fa-solid fa-palette"></i>4. What role does design play?</h3>
+                <p>
+                    Design plays a crucial role in making awareness campaigns visually appealing and memorable. Good design can simplify complex information, making it more accessible and engaging. It helps in creating a strong emotional connection with the audience, which
+                    is essential for effective communication.
+                    </Two-thirds>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 SPREADING AWARENESS</p>
+    </footer>
+
+    <script>
+        // Progress bar scroll
+        window.addEventListener('scroll', function() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById('progress').style.width = scrolled + "%";
+        });
+    </script>
+</body>
+
+</html>

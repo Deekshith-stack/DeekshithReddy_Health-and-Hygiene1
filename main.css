@@ -1,0 +1,349 @@
+/* --- CSS VARIABLES & GLOBAL STYLES --- */
+
+:root {
+    --primary-color: #008080;
+    /* Teal base */
+    --secondary-color: #55b6a7;
+    /* Lighter teal */
+    --accent-color: #ff914d;
+    /* Warm orange accent */
+    --white: #ffffff;
+    --dark-text: #2c3e50;
+    --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --button-shadow: 0 10px 20px rgba(0, 128, 128, 0.4);
+    --button-hover-shadow: 0 15px 30px rgba(0, 128, 128, 0.6);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body,
+html {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: var(--white);
+    height: 100%;
+    overflow: hidden;
+    /* Prevents scroll on the main page, critical for full-screen effects */
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+
+/* --- ANIMATED GRADIENT BACKGROUND (More vibrant and dynamic) --- */
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    /* More complex, vibrant gradient */
+    background: linear-gradient(-45deg, var(--primary-color), var(--secondary-color), #004d4d, /* Directly placed here for simplicity if not a root var */
+    var(--accent-color), #a7e9af);
+    /* Added a light green for extra pop */
+    background-size: 400% 400%;
+    animation: gradientAnimation 20s ease infinite;
+    /* Slower, smoother animation */
+    padding: 0 20px;
+    position: relative;
+    /* For z-index stacking context */
+    z-index: 1;
+    /* Ensure hero is above default body content but below overlays */
+}
+
+
+/* --- "GLASS" CONTENT CARD (with new shimmer animation) --- */
+
+.hero-content {
+    max-width: 700px;
+    /* Slightly wider */
+    background: rgba(255, 255, 255, 0.12);
+    /* Slightly less transparent */
+    backdrop-filter: blur(15px);
+    /* Stronger blur */
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    /* More defined border */
+    border-radius: 20px;
+    /* More rounded */
+    box-shadow: var(--shadow);
+    padding: 4rem;
+    /* More padding */
+    z-index: 2;
+    /* Ensure it's above the background */
+    /* For initial animation */
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+    animation: heroContentEntrance 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) forwards 0.5s;
+    /* Delay start, smoother curve */
+    /* --- NEW: Needed for shimmer pseudo-element --- */
+    position: relative;
+    overflow: hidden;
+    /* Keep shimmer inside the border radius */
+}
+
+
+/* --- NEW: Shimmer animation for the glass box --- */
+
+.hero-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    /* Start off-screen to the left */
+    width: 100%;
+    height: 100%;
+    background: linear-gradient( 90deg, transparent, rgba(255, 255, 255, 0.2) 20%, /* Shimmer peak */
+    rgba(255, 255, 255, 0.3) 50%, /* Stronger shimmer center */
+    rgba(255, 255, 255, 0.2) 80%, transparent);
+    transform: skewX(-20deg);
+    /* Tilt the shimmer for a dynamic look */
+    animation: shimmerEffect 4s infinite linear 2s;
+    /* 4s loop, infinite, linear, starts after 2s delay */
+    opacity: 0.5;
+    /* Reduce intensity slightly */
+    pointer-events: none;
+    /* Make sure it doesn't block interaction */
+}
+
+@keyframes shimmerEffect {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+    /* Move completely across to the right */
+}
+
+@keyframes heroContentEntrance {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.hero-content h2 {
+    font-size: 3.2rem;
+    /* Larger heading */
+    margin-bottom: 1rem;
+    color: var(--white);
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+    /* Stronger text shadow */
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    /* Larger paragraph text */
+    margin-bottom: 2.5rem;
+    color: rgba(255, 255, 255, 0.95);
+    /* Whiter text */
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+/* --- HEADER & FOOTER (TRANSPARENT OVERLAYS) --- */
+
+.main-header,
+.main-footer {
+    position: fixed;
+    /* Use fixed for better consistency with scroll-blocking */
+    width: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    /* Slightly darker transparent */
+    padding: 1.5rem 2rem;
+    /* More padding */
+    z-index: 10;
+    /* Ensure they are on top */
+}
+
+.main-header {
+    top: 0;
+    left: 0;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.main-header h1 {
+    font-size: 2.2rem;
+    /* Larger header title */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.main-footer {
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    font-size: 0.9rem;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.main-footer p {
+    margin: 0.4rem 0;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* --- THE "SHOCKING" CTA BUTTON --- */
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 3rem;
+    /* Larger button */
+    background: var(--primary-color);
+    color: var(--white);
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    /* Larger font */
+    font-weight: 700;
+    border-radius: 50px;
+    /* Pill shape */
+    box-shadow: var(--button-shadow);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 3;
+    /* Ensure button is above other elements for ripple */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.cta-button:hover {
+    background: var(--secondary-color);
+    /* Change background on hover */
+    transform: translateY(-5px) scale(1.02);
+    /* Lift and slightly scale */
+    box-shadow: var(--button-hover-shadow);
+}
+
+.cta-button:active {
+    transform: translateY(-2px) scale(0.98);
+    /* Press down effect */
+    box-shadow: 0 5px 15px rgba(0, 128, 128, 0.4);
+}
+
+
+/* --- CSS FOR THE RIPPLE CLICK ANIMATION --- */
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-effect 0.6s linear;
+    pointer-events: none;
+    /* Crucial: ensures ripple doesn't block clicks */
+}
+
+@keyframes ripple-effect {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+
+/* --- MAGIC DOT MOUSE TRAIL --- */
+
+.magic-dot {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    /* Soft white dot */
+    border-radius: 50%;
+    pointer-events: none;
+    /* Ensures dot doesn't interfere with clicks */
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    /* Center the dot on the cursor */
+    transition: transform 0.1s ease-out, background 0.2s ease-out;
+    /* Smooth movement */
+    opacity: 0.8;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+
+/* --- CONFETTI PARTICLE STYLES --- */
+
+.confetti {
+    position: fixed;
+    pointer-events: none;
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+    /* Set by JS */
+    border-radius: 50%;
+    /* Most are circles */
+    opacity: 0;
+    z-index: 99999;
+    /* Highest z-index */
+    animation: fadeAndFall 1.5s ease-out forwards;
+}
+
+@keyframes fadeAndFall {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--x-end), var(--y-end)) rotate(var(--rotation));
+    }
+}
+
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+
+@media (max-width: 768px) {
+    .hero-content {
+        padding: 2.5rem 1.5rem;
+        max-width: 90%;
+        /* Occupy more width on smaller screens */
+    }
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+    .cta-button {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+    .main-header h1 {
+        font-size: 1.6rem;
+    }
+    .main-footer p {
+        font-size: 0.8rem;
+    }
+    /* Hide magic dot on mobile to avoid interference */
+    .magic-dot {
+        display: none;
+    }
+    /* Hide shimmer effect on mobile for performance/simplicity */
+    .hero-content::after {
+        display: none;
+    }
+}
